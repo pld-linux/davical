@@ -8,7 +8,7 @@ Version:	0.9.9.2
 Release:	0.1
 License:	GPL v2
 Group:		Applications
-Source0:	http://sourceforge.net/projects/rscds/files/davical/0.9.9.2/davical-0.9.9.2.tar.gz
+Source0:	http://downloads.sourceforge.net/project/rscds/davical/0.9.9.2/%{name}-%{version}.tar.gz
 # Source0-md5:	c35047bab51ca86729cba94f81988db8
 Source1:	%{name}.conf
 Source2:	%{name}-lighttpd.conf
@@ -28,9 +28,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_webapps	/etc/webapps
 
 %description
-The DAViCal CalDAV Server is a repository for calendar, todo and journal
-entries to be accessed via CalDAV clients such as Evolution, Sunbird,
-Lightning, Mulberry, Chandler, Apple iCal or the iPhone.
+The DAViCal CalDAV Server is a repository for calendar, todo and
+journal entries to be accessed via CalDAV clients such as Evolution,
+Sunbird, Lightning, Mulberry, Chandler, Apple iCal or the iPhone.
 
 %prep
 %setup -q
