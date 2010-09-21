@@ -1,8 +1,8 @@
 # TODO:
 # - package docs?
 # - test lighttpd config
-Summary:	davical
-Summary(pl.UTF-8):	davical
+Summary:	CalDAV Server
+Summary(pl.UTF-8):	Serwer CalDAV
 Name:		davical
 Version:	0.9.9.2
 Release:	0.1
@@ -28,10 +28,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_webapps	/etc/webapps
 
 %description
-XXX
-
-%description -l pl.UTF-8
-XXX
+The DAViCal CalDAV Server is a repository for calendar, todo and journal
+entries to be accessed via CalDAV clients such as Evolution, Sunbird,
+Lightning, Mulberry, Chandler, Apple iCal or the iPhone.
 
 %prep
 %setup -q
