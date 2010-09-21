@@ -19,9 +19,8 @@ Requires:	php-session
 Requires:	webapps
 Requires:	webserver(access)
 Requires:	webserver(alias)
-Suggests:	php-mysqli
+Requires:	webserver(php)
 Suggests:	webserver(indexfile)
-Suggests:	webserver(php)
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
