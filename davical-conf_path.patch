@@ -1,0 +1,30 @@
+--- davical-0.9.9.2/inc/always.php.in.orig	2010-09-22 15:19:34.000000000 +0200
++++ davical-0.9.9.2/inc/always.php.in	2010-09-22 15:19:48.000000000 +0200
+@@ -117,23 +104,11 @@
+ * too early.
+ */
+ ob_start( );
+-if ( @file_exists('/etc/davical/'.$_SERVER['SERVER_NAME'].'-conf.php') ) {
+-  include('/etc/davical/'.$_SERVER['SERVER_NAME'].'-conf.php');
++if ( @file_exists('/etc/webapps/davical/'.$_SERVER['SERVER_NAME'].'-conf.php') ) {
++  include('/etc/webapps/davical/'.$_SERVER['SERVER_NAME'].'-conf.php');
+ }
+-else if ( @file_exists('/etc/davical/config.php') ) {
+-  include('/etc/davical/config.php');
+-}
+-else if ( @file_exists('/usr/local/etc/davical/'.$_SERVER['SERVER_NAME'].'-conf.php') ) {
+-  include('/usr/local/etc/davical/'.$_SERVER['SERVER_NAME'].'-conf.php');
+-}
+-else if ( @file_exists('/usr/local/etc/davical/config.php') ) {
+-  include('/usr/local/etc/davical/config.php');
+-}
+-else if ( @file_exists('../config/config.php') ) {
+-  include('../config/config.php');
+-}
+-else if ( @file_exists('config/config.php') ) {
+-  include('config/config.php');
++else if ( @file_exists('/etc/webapps/davical/config.php') ) {
++  include('/etc/webapps/davical/config.php');
+ }
+ else {
+   include('davical_configuration_missing.php');
