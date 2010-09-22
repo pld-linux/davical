@@ -5,13 +5,14 @@ Summary:	CalDAV Server
 Summary(pl.UTF-8):	Serwer CalDAV
 Name:		davical
 Version:	0.9.9.2
-Release:	0.1
+Release:	0.3
 License:	GPL v2
 Group:		Applications
 Source0:	http://downloads.sourceforge.net/project/rscds/davical/0.9.9.2/%{name}-%{version}.tar.gz
 # Source0-md5:	c35047bab51ca86729cba94f81988db8
 Source1:	%{name}.conf
 Source2:	%{name}-lighttpd.conf
+Patch0:		%{name}-php_data_dir.patch
 BuildRequires:	php-awl
 BuildRequires:	php-pear-PhpDocumentor
 Requires:	php-awl
@@ -35,7 +36,10 @@ Sunbird, Lightning, Mulberry, Chandler, Apple iCal or the iPhone.
 %prep
 %setup -q
 
+%patch0 -p1
+
 sed -i 's#^AWL_LOCATION="\.\./awl"$#AWL_LOCATION=%{php_data_dir}/awl#' scripts/po/rebuild-translations.sh
+sed -i 's#@PHP_DATA_DIR@#%{php_data_dir}#' inc/always.php.in
 sed -i /^================================================================/q COPYING
 
 %build
@@ -50,6 +54,7 @@ install -d $RPM_BUILD_ROOT%{_appdir}
 
 cp -a config/example-config.php $RPM_BUILD_ROOT%{_webapps}/%{name}/config.php
 cp -a config/example-administration.yml $RPM_BUILD_ROOT%{_webapps}/%{name}/administration.yml
+cp -a inc $RPM_BUILD_ROOT%{_appdir}
 cp -a htdocs $RPM_BUILD_ROOT%{_appdir}
 cp -a dba $RPM_BUILD_ROOT%{_appdir}
 
@@ -91,5 +96,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_webapps}/%{name}/httpd.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_webapps}/%{name}/lighttpd.conf
 %dir %{_appdir}
-%{_appdir}/htdocs
 %{_appdir}/dba
+%{_appdir}/htdocs
+%{_appdir}/inc
