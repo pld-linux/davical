@@ -16,6 +16,9 @@ Patch0:		%{name}-php_data_dir.patch
 Patch1:		%{name}-conf_path.patch
 BuildRequires:	php-awl
 BuildRequires:	php-pear-PhpDocumentor
+Requires:	perl(DBD::Pg)
+Requires:	perl(YAML)
+Requires:	perl-base
 Requires:	php-awl
 Requires:	php-pcre
 Requires:	php-pdo-pgsql
@@ -61,6 +64,8 @@ cp -a inc $RPM_BUILD_ROOT%{_appdir}
 cp -a htdocs $RPM_BUILD_ROOT%{_appdir}
 cp -a dba $RPM_BUILD_ROOT%{_appdir}
 
+rm -rf $RPM_BUILD_ROOT%{_appdir}/dba/windows
+
 install %{SOURCE1} $RPM_BUILD_ROOT%{_webapps}/%{name}/httpd.conf
 install %{SOURCE1} $RPM_BUILD_ROOT%{_webapps}/%{name}/apache.conf
 install %{SOURCE2} $RPM_BUILD_ROOT%{_webapps}/%{name}/lighttpd.conf
@@ -99,6 +104,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_webapps}/%{name}/httpd.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_webapps}/%{name}/lighttpd.conf
 %dir %{_appdir}
-%{_appdir}/dba
+%dir %{_appdir}/dba
+%{_appdir}/dba/*.sql
+%{_appdir}/dba/*.txt
+%{_appdir}/dba/patches
+%{_appdir}/dba/views
+%attr(755,root,root) %{_appdir}/dba/create-database.sh
+%attr(755,root,root) %{_appdir}/dba/update-davical-database
 %{_appdir}/htdocs
 %{_appdir}/inc
