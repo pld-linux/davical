@@ -24,3 +24,25 @@
  }
  
  // Ensure that ../inc is in our included paths as early as possible
+--- davical-0.9.9.2/dba/create-database.sh~	2010-09-21 03:40:44.000000000 +0200
++++ davical-0.9.9.2/dba/create-database.sh	2010-09-22 17:02:18.000000000 +0200
+@@ -16,16 +16,10 @@
+ 
+ #
+ # Attempt to locate the AWL directory
+-AWLDIR="${DBADIR}/../../awl"
++AWLDIR="/usr/share/php/awl"
+ if ! testawldir "${AWLDIR}"; then
+-  AWLDIR="/usr/share/awl"
+-  if ! testawldir "${AWLDIR}"; then
+-    AWLDIR="/usr/local/share/awl"
+-    if ! testawldir "${AWLDIR}"; then
+-      echo "Unable to find AWL libraries"
+-      exit 1
+-    fi
+-  fi
++  echo "Unable to find AWL libraries"
++  exit 1
+ fi
+ 
+ export AWL_DBAUSER=davical_dba
