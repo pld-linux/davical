@@ -1,13 +1,26 @@
---- davical-0.9.9.2/inc/always.php.in~	2010-09-21 04:28:04.000000000 +0200
-+++ davical-0.9.9.2/inc/always.php.in	2010-09-22 13:46:31.000000000 +0200
-@@ -71,9 +71,7 @@
+--- davical-0.9.9.2/inc/always.php.in.orig	2010-09-22 15:19:34.000000000 +0200
++++ davical-0.9.9.2/inc/always.php.in	2010-09-22 15:19:48.000000000 +0200
+@@ -70,21 +70,8 @@
+ 
  // Utilities
  if ( ! @include_once('AWLUtilities.php') ) {
-   $try_paths = array(
+-  $try_paths = array(
 -        '../../awl/inc'
 -      , '/usr/share/awl/inc'
 -      , '/usr/local/share/awl/inc'
-+        '@PHP_DATA_DIR@/awl/inc'
-   );
-   foreach( $try_paths AS $awl_include_path ) {
-     if ( @file_exists($awl_include_path.'/AWLUtilities.php') ) {
+-  );
+-  foreach( $try_paths AS $awl_include_path ) {
+-    if ( @file_exists($awl_include_path.'/AWLUtilities.php') ) {
+-      set_include_path( $awl_include_path. PATH_SEPARATOR. get_include_path());
+-      break;
+-    }
+-  }
+-  if ( ! @include_once('AWLUtilities.php') ) {
+-    echo "Could not find the AWL libraries. Are they installed? Check your include_path in php.ini!\n";
+-    exit;
+-  }
++  echo "Could not find the AWL libraries. Are they installed? Check your include_path in php.ini!\n";
++  exit;
+ }
+ 
+ // Ensure that ../inc is in our included paths as early as possible
