@@ -5,7 +5,7 @@ Summary:	CalDAV Server
 Summary(pl.UTF-8):	Serwer CalDAV
 Name:		davical
 Version:	0.9.9.2
-Release:	0.3
+Release:	0.5
 License:	GPL v2
 Group:		Applications
 Source0:	http://downloads.sourceforge.net/project/rscds/davical/0.9.9.2/%{name}-%{version}.tar.gz
@@ -13,9 +13,12 @@ Source0:	http://downloads.sourceforge.net/project/rscds/davical/0.9.9.2/%{name}-
 Source1:	%{name}.conf
 Source2:	%{name}-lighttpd.conf
 Patch0:		%{name}-php_data_dir.patch
+Patch1:		%{name}-conf_path.patch
 BuildRequires:	php-awl
 BuildRequires:	php-pear-PhpDocumentor
 Requires:	php-awl
+Requires:	php-pcre
+Requires:	php-pdo-pgsql
 Requires:	php-session
 Requires:	webapps
 Requires:	webserver(access)
@@ -37,9 +40,9 @@ Sunbird, Lightning, Mulberry, Chandler, Apple iCal or the iPhone.
 %setup -q
 
 %patch0 -p1
+%patch1 -p1
 
 sed -i 's#^AWL_LOCATION="\.\./awl"$#AWL_LOCATION=%{php_data_dir}/awl#' scripts/po/rebuild-translations.sh
-sed -i 's#@PHP_DATA_DIR@#%{php_data_dir}#' inc/always.php.in
 sed -i /^================================================================/q COPYING
 
 %build
