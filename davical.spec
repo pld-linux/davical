@@ -4,18 +4,19 @@
 Summary:	CalDAV Server
 Summary(pl.UTF-8):	Serwer CalDAV
 Name:		davical
-Version:	0.9.9.4
+Version:	0.9.9.6
 Release:	0.5
 License:	GPL v2
 Group:		Applications
 Source0:	http://debian.mcmillan.net.nz/packages/davical/%{name}-%{version}.tar.gz
-# Source0-md5:	8d43279a124ee0e207fc2c071e8df882
+# Source0-md5:	bf1189064e43a061c3eaaebf4416fd8b
 Source1:	%{name}.conf
 Source2:	%{name}-lighttpd.conf
 URL:		http://davical.org/
 Patch0:		%{name}-php_data_dir.patch
 Patch1:		%{name}-conf_path.patch
-BuildRequires:	php-awl >= 0.46
+BuildRequires:	gettext-devel
+BuildRequires:	php-awl >= 0.48
 BuildRequires:	php-pear-PhpDocumentor
 Requires:	perl(DBD::Pg)
 Requires:	perl(YAML)
