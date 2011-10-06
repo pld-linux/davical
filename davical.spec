@@ -21,7 +21,7 @@ BuildRequires:	php-pear-PhpDocumentor
 Requires:	perl(DBD::Pg)
 Requires:	perl(YAML)
 Requires:	perl-base
-Requires:	php-awl >= 0.46
+Requires:	php-awl >= 0.48
 Requires:	php-pcre
 Requires:	php-pdo-pgsql
 Requires:	php-session
