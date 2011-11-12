@@ -4,19 +4,19 @@
 Summary:	CalDAV Server
 Summary(pl.UTF-8):	Serwer CalDAV
 Name:		davical
-Version:	0.9.9.6
-Release:	0.5
+Version:	0.9.9.7
+Release:	0.6
 License:	GPL v2
 Group:		Applications
 Source0:	http://debian.mcmillan.net.nz/packages/davical/%{name}-%{version}.tar.gz
-# Source0-md5:	bf1189064e43a061c3eaaebf4416fd8b
+# Source0-md5:	3a4dcefa0a884b677546575adc3077be
 Source1:	%{name}.conf
 Source2:	%{name}-lighttpd.conf
 URL:		http://davical.org/
 Patch0:		%{name}-php_data_dir.patch
 Patch1:		%{name}-conf_path.patch
 BuildRequires:	gettext-devel
-BuildRequires:	php-awl >= 0.48
+BuildRequires:	php-awl >= 0.49
 BuildRequires:	php-pear-PhpDocumentor
 Requires:	perl(DBD::Pg)
 Requires:	perl(YAML)
@@ -98,7 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc COPYING ChangeLog CREDITS README TODO
+%doc COPYING ChangeLog CREDITS README TODO scripts
 %dir %attr(750,root,http) %{_sysconfdir}/webapps/%{name}
 %attr(640,root,http) %config(noreplace) %verify(not md5 mtime size) %{_webapps}/%{name}/config.php
 %attr(640,root,http) %config(noreplace) %verify(not md5 mtime size) %{_webapps}/%{name}/administration.yml
