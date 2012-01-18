@@ -5,7 +5,7 @@ Summary:	CalDAV Server
 Summary(pl.UTF-8):	Serwer CalDAV
 Name:		davical
 Version:	1.0.2
-Release:	0.6
+Release:	0.7
 License:	GPL v2
 Group:		Applications
 Source0:	http://debian.mcmillan.net.nz/packages/davical/%{name}-%{version}.tar.gz
@@ -15,6 +15,7 @@ Source2:	%{name}-lighttpd.conf
 URL:		http://davical.org/
 Patch0:		%{name}-php_data_dir.patch
 Patch1:		%{name}-conf_path.patch
+Patch2:		awl_version.patch
 BuildRequires:	gettext-devel
 BuildRequires:	php-awl >= 0.49
 BuildRequires:	php-pear-PhpDocumentor
@@ -43,14 +44,16 @@ Sunbird, Lightning, Mulberry, Chandler, Apple iCal or the iPhone.
 
 %prep
 %setup -q
-
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 sed -i 's#^AWL_LOCATION="\.\./awl"$#AWL_LOCATION=%{php_data_dir}/awl#' scripts/po/rebuild-translations.sh
 sed -i /^================================================================/q COPYING
 
 %build
+# we can force awl_version if required
+# AWL_VERSION="0.50" scripts/build-always.sh < inc/always.php.in > htdocs/always.php
 scripts/build-always.sh < inc/always.php.in > htdocs/always.php
 phpdoc -c docs/api/phpdoc.ini
 scripts/po/rebuild-translations.sh
@@ -67,6 +70,7 @@ cp -a htdocs $RPM_BUILD_ROOT%{_appdir}
 cp -a dba $RPM_BUILD_ROOT%{_appdir}
 
 rm -rf $RPM_BUILD_ROOT%{_appdir}/dba/windows
+rm -f $RPM_BUILD_ROOT%{_appdir}/inc/always.php.in*
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_webapps}/%{name}/httpd.conf
 install %{SOURCE1} $RPM_BUILD_ROOT%{_webapps}/%{name}/apache.conf
@@ -98,7 +102,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc COPYING ChangeLog CREDITS README TODO scripts
+%doc COPYING ChangeLog CREDITS README TODO scripts/*.php
 %dir %attr(750,root,http) %{_sysconfdir}/webapps/%{name}
 %attr(640,root,http) %config(noreplace) %verify(not md5 mtime size) %{_webapps}/%{name}/config.php
 %attr(640,root,http) %config(noreplace) %verify(not md5 mtime size) %{_webapps}/%{name}/administration.yml
