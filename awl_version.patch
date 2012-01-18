@@ -1,0 +1,14 @@
+--- davical-1.0.2/scripts/build-always.sh~	2011-09-11 13:46:40.000000000 +0200
++++ davical-1.0.2/scripts/build-always.sh	2012-01-18 23:30:09.179982600 +0100
+@@ -5,9 +5,9 @@
+ 
+ DAVICAL_VERSION="`head -n1 VERSION`"
+ DB_VERSION="`grep 'SELECT new_db_revision' dba/davical.sql | cut -f2 -d'(' | cut -f1-3 -d,`"
+-AWL_VERSION="`head -n1 ../awl/VERSION`"
++
+ if [ -z "${AWL_VERSION}" ] ; then
+-  AWL_VERSION="'`grep 'want_awl_version' inc/always.php.in | cut -f2 -d= | cut -f1 -d';' | sed 's: ::g'`'"  
++  AWL_VERSION="`grep 'want_awl_version' inc/always.php.in | cut -f2 -d= | cut -f1 -d';' | sed 's: ::g'`"  
+ fi
+ 
+ sed -e "/^ *.c->version_string *= *'[^']*' *;/ s/^ *.c->version_string *= *'[^']*' *;/\$c->version_string = '${DAVICAL_VERSION}';/" \
