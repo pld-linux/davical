@@ -4,12 +4,12 @@
 Summary:	CalDAV Server
 Summary(pl.UTF-8):	Serwer CalDAV
 Name:		davical
-Version:	1.0.1
+Version:	1.0.2
 Release:	0.6
 License:	GPL v2
 Group:		Applications
 Source0:	http://debian.mcmillan.net.nz/packages/davical/%{name}-%{version}.tar.gz
-# Source0-md5:	2870d67718e3d7dc9110b395ce071b23
+# Source0-md5:	340ab213a6303742c66a8028989c2027
 Source1:	%{name}.conf
 Source2:	%{name}-lighttpd.conf
 URL:		http://davical.org/
