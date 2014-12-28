@@ -16,7 +16,7 @@ URL:		http://davical.org/
 Patch0:		%{name}-php_data_dir.patch
 Patch1:		%{name}-conf_path.patch
 Patch2:		awl_version.patch
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	php-awl >= 0.49
 BuildRequires:	php-pear-PhpDocumentor
 Requires:	perl(DBD::Pg)
